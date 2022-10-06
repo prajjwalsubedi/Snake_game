@@ -1,16 +1,32 @@
-# This is a sample Python script.
+from turtle import Screen
+from snake import Snake
+from food import Food
+from points import Point
+import time
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+screen = Screen()
+screen.bgcolor("black")
+screen.tracer(0)
+snake = Snake()
+food = Food()
+point = Point()
+
+screen.listen()
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+is_game_on = True
 
+while is_game_on:
+    snake.move()
+    screen.update()
+    time.sleep(0.1)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    if snake.segments[0].distance(food) < 15:
+        food.refresh()
+        point.print_score()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+screen.exitonclick()
