@@ -16,3 +16,6 @@ class Point(Turtle):
         self.clear()
         self.write(f"Score = {self.score}", align="center", font=('Arial', 24, 'normal'))
 
+    def print_over(self):
+        self.goto(0, 0)
+        self.write("GAME OVER", align="center", font=('Arial', 38, 'normal'))
